@@ -61,7 +61,7 @@ public class RemocaoProduto {
     }
 
     // Menu de Remoção
-    public static void menuRemocao() {
+    public static void menuRemocaoProduto() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Opções de Remoção:");

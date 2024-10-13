@@ -68,7 +68,7 @@ public class RemocaoCliente {
     }
 
     // Menu de Remoção
-    public static void menuRemocao() {
+    public static void menuRemocaoCliente() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Opções de Remoção:");

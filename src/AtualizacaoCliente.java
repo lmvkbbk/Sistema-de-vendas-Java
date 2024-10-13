@@ -86,7 +86,7 @@ public class AtualizacaoCliente {
         }
     }
 
-    public static void menuAtualizacao() {
+    public static void menuAtualizacaoCliente() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Escolha o campo que deseja atualizar:");
