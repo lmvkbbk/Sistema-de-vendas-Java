@@ -27,7 +27,6 @@ public class InsercaoProduto {
 
         adicionarProdutoCompleto(nome, categoria, quantidade, custo, valor);
 
-        scanner.close();
     }
 
     // Metodo para adicionar um produto completo

@@ -55,8 +55,6 @@ public class Login {
         } else {
             System.out.println("Não foi possível acessar a conta. Tente novamente.");
         }
-
-        scanner.close();
     }
     // adicionar dps a entrada "adminstrador"
 }

@@ -136,7 +136,5 @@ public class AtualizacaoCliente {
             default:
                 System.out.println("Opção inválida.");
         }
-
-        scanner.close();
     }
 }

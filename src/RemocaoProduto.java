@@ -106,8 +106,6 @@ public class RemocaoProduto {
             default:
                 System.out.println("Opção inválida.");
         }
-
-        scanner.close();
     }
 }
 

@@ -58,8 +58,6 @@ public class ConsultaProduto {
             default:
                 System.out.println("Opção inválida.");
         }
-
-        scanner.close();
     }
 
     private void exibirResultados(PreparedStatement statement) throws SQLException {

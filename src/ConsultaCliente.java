@@ -63,8 +63,6 @@ public class ConsultaCliente {
             default:
                 System.out.println("Opção inválida.");
         }
-
-        scanner.close();
     }
 
     // Metodo para mostrar todos os clientes

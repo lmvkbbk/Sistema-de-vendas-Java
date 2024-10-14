@@ -120,7 +120,5 @@ public class RemocaoCliente {
             default:
                 System.out.println("Opção inválida.");
         }
-
-        scanner.close();
     }
 }

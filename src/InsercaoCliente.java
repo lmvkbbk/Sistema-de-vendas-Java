@@ -25,8 +25,6 @@ public class InsercaoCliente {
         String telefone = scanner.nextLine();
 
         adicionarClienteCompleto(nome, cpf, dataNascimento, email, telefone);
-
-        scanner.close();
     }
 
     // Metodo para adicionar um cliente completo

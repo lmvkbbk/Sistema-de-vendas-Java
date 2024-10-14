@@ -134,7 +134,5 @@ public class AtualizacaoProduto {
             default:
                 System.out.println("Opção inválida.");
         }
-
-        scanner.close();
     }
 }
