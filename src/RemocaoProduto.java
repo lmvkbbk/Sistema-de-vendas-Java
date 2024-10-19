@@ -55,13 +55,13 @@ public class RemocaoProduto {
             } else {
                 System.out.println("Nenhum produto encontrado com o critério fornecido.");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao ao tentar remover o produto: " + ex.getMessage());
         }
     }
 
     // Menu de Remoção
-    public static void menuRemocaoProduto() {
+    public void menuRemocaoProduto() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Opções de Remoção:");

@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class InsercaoProduto {
-    public static void menuInsercaoProduto() {
+    public void menuInsercaoProduto() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Digite o nome do produto: ");
@@ -43,8 +43,8 @@ public class InsercaoProduto {
             if (rowsInserted > 0) {
                 System.out.println("Produto adicionado com sucesso!");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao tentar adicionar um produto: " + ex.getMessage());
         }
     }
 }

@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class ConsultaProduto {
 
-    public static void menuPesquisaProduto() {
+    public void menuPesquisaProduto() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Opções de Pesquisa:");
@@ -81,8 +81,8 @@ public class ConsultaProduto {
         try (Connection connection = Conexao.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             exibirResultados(statement);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao tentar mostrar todos produtos: " + ex.getMessage());
         }
     }
 
@@ -93,8 +93,9 @@ public class ConsultaProduto {
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, nome);
             exibirResultados(statement);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao pesquisar pelo nome: "+ nome);
+            System.out.println("Erro :"+ ex.getMessage());
         }
     }
 
@@ -105,8 +106,9 @@ public class ConsultaProduto {
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             exibirResultados(statement);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao pesquisar pelo id: "+ id);
+            System.out.println("Erro :"+ ex.getMessage());
         }
     }
 
@@ -117,8 +119,9 @@ public class ConsultaProduto {
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, categoria);
             exibirResultados(statement);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao pesquisar pela categoria: "+ categoria);
+            System.out.println("Erro :"+ ex.getMessage());
         }
     }
 
@@ -129,8 +132,9 @@ public class ConsultaProduto {
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, quantidade);
             exibirResultados(statement);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao pesquisar pela quantidade: "+ quantidade);
+            System.out.println("Erro :"+ ex.getMessage());
         }
     }
 
@@ -141,8 +145,9 @@ public class ConsultaProduto {
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setDouble(1, custo);
             exibirResultados(statement);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao pesquisar pelo custo: "+ custo);
+            System.out.println("Erro :"+ ex.getMessage());
         }
     }
 
@@ -153,8 +158,9 @@ public class ConsultaProduto {
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setDouble(1, valor);
             exibirResultados(statement);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao pesquisar pelo valor: "+ valor);
+            System.out.println("Erro :"+ ex.getMessage());
         }
     }
 

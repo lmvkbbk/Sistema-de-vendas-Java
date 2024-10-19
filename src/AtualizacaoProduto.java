@@ -16,8 +16,8 @@ public class AtualizacaoProduto {
             if (rowsUpdated > 0) {
                 System.out.println("Nome atualizado com sucesso!");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao tentar atualizar: "+ ex.getMessage());
         }
     }
 
@@ -32,8 +32,8 @@ public class AtualizacaoProduto {
             if (rowsUpdated > 0) {
                 System.out.println("Categoria atualizada com sucesso!");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao tentar atualizar: "+ ex.getMessage());
         }
     }
 
@@ -48,8 +48,8 @@ public class AtualizacaoProduto {
             if (rowsUpdated > 0) {
                 System.out.println("Quantidade atualizada com sucesso!");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao tentar atualizar: "+ ex.getMessage());
         }
     }
 
@@ -64,8 +64,8 @@ public class AtualizacaoProduto {
             if (rowsUpdated > 0) {
                 System.out.println("Custo atualizado com sucesso!");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao tentar atualizar: "+ ex.getMessage());
         }
     }
 
@@ -80,12 +80,12 @@ public class AtualizacaoProduto {
             if (rowsUpdated > 0) {
                 System.out.println("Valor atualizado com sucesso!");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            System.out.println("Ocorreu um erro ao tentar atualizar: "+ ex.getMessage());
         }
     }
 
-    public static void menuAtualizacaoProduto() {
+    public void menuAtualizacaoProduto() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Escolha o campo que deseja atualizar:");

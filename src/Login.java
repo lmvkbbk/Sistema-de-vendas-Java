@@ -5,56 +5,55 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Login {
-    private int userId;
+    private boolean autenticacao = false;
+    private boolean tipoUsuario;
 
-    public boolean autenticar(String email, String cpf) {
-        String sql = "SELECT id FROM Cliente WHERE email = ? AND cpf = ?";
+    public boolean getAutenticacao(){
+        return autenticacao;
+    }
+
+    public boolean getTipoUsuario(){
+        return tipoUsuario;
+    }
+
+    public void login(String nome, String senha) {
+        String sql = "SELECT adm FROM Usuarios WHERE nome = ? AND senha = ?";
 
         try (Connection conexao = Conexao.getConnection();
-             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+             PreparedStatement statement = conexao.prepareStatement(sql)) {
 
-            stmt.setString(1, email);
-            stmt.setString(2, cpf);
+            statement.setString(1, nome);
+            statement.setString(2, senha);
 
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-                // Salva o ID do usuário se a autenticação for bem-sucedida
-                userId = rs.getInt("id");
-                System.out.println("Login bem-sucedido. ID do usuário: " + userId);
-                return true;
+                this.tipoUsuario = rs.getBoolean("adm");
+                this.autenticacao =  true;
+                System.out.println("Login bem-sucedido.");
             } else {
                 System.out.println("Login falhou. Verifique suas credenciais.");
-                return false;
             }
 
         } catch (SQLException ex) {
             System.out.println("Erro ao autenticar usuário: " + ex.getMessage());
-            return false;
         }
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public static void menuLogin() {
+    public void menuLogin() {
         Scanner scanner = new Scanner(System.in);
-        Login login = new Login();
 
-        System.out.print("Digite seu email: ");
-        String email = scanner.nextLine();
+        System.out.print("Digite seu nome de Usuario: ");
+        String nome = scanner.nextLine();
 
-        System.out.print("Digite seu CPF: ");
-        String cpf = scanner.nextLine();
+        System.out.print("Digite sua Senha: ");
+        String senha = scanner.nextLine();
 
-        boolean autenticado = login.autenticar(email, cpf);
-        if (autenticado) {
-            int userId = login.getUserId();
-            System.out.println("Bem-vindo! Seu ID é: " + userId);
+        login(nome, senha);
+        if (this.autenticacao) {
+            System.out.println("Bem-vindo!");
         } else {
             System.out.println("Não foi possível acessar a conta. Tente novamente.");
         }
     }
-    // adicionar dps a entrada "adminstrador"
 }
