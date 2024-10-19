@@ -60,14 +60,14 @@ public class ConsultaUsuarios {
                 consulta.pesquisarPorAdm(adm);
                 break;
             case 4:
-                consulta.mostrarTodosClientes();
+                consulta.mostrarTodosUsuarios();
                 break;
             default:
                 System.out.println("Opção inválida.");
         }
     }
 
-    public void mostrarTodosClientes() {
+    public void mostrarTodosUsuarios() {
         String sql = "SELECT * FROM Usuarios";
         try (Connection connection = Conexao.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -118,7 +118,7 @@ public class ConsultaUsuarios {
             statement.setInt(1, id);
             exibirResultados(statement);
         } catch (SQLException ex) {
-            System.out.println("Ocorreu um erro ao pesquisar pelo nome: "+ id);
+            System.out.println("Ocorreu um erro ao pesquisar pelo id: "+ id);
             System.out.println("Erro :"+ ex.getMessage());
         }
     }

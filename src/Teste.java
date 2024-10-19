@@ -1,6 +1,9 @@
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 public class Teste {
+
     public static void teste() {
         Scanner scanner = new Scanner(System.in);
         ConsultaProduto consultaProduto = new ConsultaProduto();
