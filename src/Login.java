@@ -1,3 +1,5 @@
+import database.Conexao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,7 +45,7 @@ public class Login {
     public void menuLogin() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Digite seu nome de Usuario: ");
+        System.out.print("Digite seu nome de models.Usuario: ");
         String nome = scanner.nextLine();
 
         System.out.print("Digite sua Senha: ");

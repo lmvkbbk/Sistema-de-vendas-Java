@@ -1,12 +1,11 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import models.*;
 import java.util.Scanner;
 
 public class Teste {
 
     public static void teste() {
         Scanner scanner = new Scanner(System.in);
-        ConsultaProduto consultaProduto = new ConsultaProduto();
+        Produto produto = new Produto();
         ConsultaUsuarios consultaUsuarios = new ConsultaUsuarios();
         InsercaoProduto insercaoProduto = new InsercaoProduto();
         InsercaoUsuario insercaoUsuario = new InsercaoUsuario();
@@ -19,21 +18,21 @@ public class Teste {
 
         do {
             System.out.println("Opções: ");
-            System.out.println("1. Consulta Produto");
-            System.out.println("2. Consulta Usuario");
-            System.out.println("3. Inserção Produto");
-            System.out.println("4. Inserção Usuario");
-            System.out.println("5. Atualização Produto");
-            System.out.println("6. Atualização Usuario");
-            System.out.println("7. Remoção Produto");
-            System.out.println("8. Remoção Usuario");
+            System.out.println("1. Consulta models.Produto");
+            System.out.println("2. Consulta models.Usuario");
+            System.out.println("3. Inserção models.Produto");
+            System.out.println("4. Inserção models.Usuario");
+            System.out.println("5. Atualização models.Produto");
+            System.out.println("6. Atualização models.Usuario");
+            System.out.println("7. Remoção models.Produto");
+            System.out.println("8. Remoção models.Usuario");
             System.out.println("9. Sair");
 
             opcao = scanner.nextInt();
 
             switch (opcao) {
                 case 1:
-                    consultaProduto.menuPesquisaProduto();
+                    produto();
                     break;
                 case 2:
                     consultaUsuarios.menuPesquisaUsuarios();

@@ -7,7 +7,7 @@ public class Main {
         }
 
         if (login.getTipoUsuario()) {
-            System.out.println("vc é administrador");
+            System.out.println("vc é Administrador");
             Teste.teste();
         }else
             System.out.println("vc é funcionario");
