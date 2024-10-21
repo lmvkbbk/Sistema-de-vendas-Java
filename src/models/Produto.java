@@ -1,11 +1,13 @@
 package models;
 
-import Menus.Administrador;
-import database.Conexao;
+import database.*;
 import java.sql.*;
 import java.util.Scanner;
 
 public class Produto {
+
+
+
     private void exibirResultados(PreparedStatement statement) throws SQLException {
         try (ResultSet rsProduto = statement.executeQuery()) {
             while (rsProduto.next()) {
@@ -39,55 +41,59 @@ public class Produto {
 
     public void menuPesquisaProduto() {
         Scanner scanner = new Scanner(System.in);
-        Administrador adm = new Administrador();
 
-        System.out.println("Opções de Pesquisa:");
-        System.out.println("1. Nome");
-        System.out.println("2. ID");
-        System.out.println("3. Categoria");
-        System.out.println("4. Quantidade");
-        System.out.println("5. Custo");
-        System.out.println("6. Valor");
+        int opcao;
+        do {
+            System.out.println("Opções de Pesquisa:");
+            System.out.println("1. Nome");
+            System.out.println("2. ID");
+            System.out.println("3. Categoria");
+            System.out.println("4. Quantidade");
+            System.out.println("5. Custo");
+            System.out.println("6. Valor");
+            System.out.println("7. Sair");
 
-        System.out.print("Escolha uma opção: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
+            System.out.print("Escolha uma opção: ");
+            opcao  = scanner.nextInt();
+            scanner.nextLine();
 
-        switch (opcao) {
-            case 1:
-                System.out.print("Digite o nome: ");
-                String nome = scanner.nextLine();
-                pesquisarPorNome(nome);
-                break;
-            case 2:
-                System.out.print("Digite o ID: ");
-                int id = scanner.nextInt();
-                pesquisarPorId(id);
-                break;
-            case 3:
-                System.out.print("Digite a categoria: ");
-                String categoria = scanner.nextLine();
-                pesquisarPorCategoria(categoria);
-                break;
-            case 4:
-                System.out.print("Digite a quantidade: ");
-                int quantidade = scanner.nextInt();
-                pesquisarPorQuantidade(quantidade);
-                break;
-            case 5:
-                System.out.print("Digite o custo: ");
-                double custo = scanner.nextDouble();
-                pesquisarPorCusto(custo);
-                break;
-            case 6:
-                System.out.print("Digite o valor: ");
-                double valor = scanner.nextDouble();
-                pesquisarPorValor(valor);
-                break;
-            default:
-                System.out.println("Opção inválida.");
-        }
-        adm.menuAdm();
+            switch (opcao) {
+                case 1:
+                    System.out.print("Digite o nome: ");
+                    String nome = scanner.nextLine();
+                    pesquisarPorNome(nome);
+                    break;
+                case 2:
+                    System.out.print("Digite o ID: ");
+                    int id = scanner.nextInt();
+                    pesquisarPorId(id);
+                    break;
+                case 3:
+                    System.out.print("Digite a categoria: ");
+                    String categoria = scanner.nextLine();
+                    pesquisarPorCategoria(categoria);
+                    break;
+                case 4:
+                    System.out.print("Digite a quantidade: ");
+                    int quantidade = scanner.nextInt();
+                    pesquisarPorQuantidade(quantidade);
+                    break;
+                case 5:
+                    System.out.print("Digite o custo: ");
+                    double custo = scanner.nextDouble();
+                    pesquisarPorCusto(custo);
+                    break;
+                case 6:
+                    System.out.print("Digite o valor: ");
+                    double valor = scanner.nextDouble();
+                    pesquisarPorValor(valor);
+                    break;
+                case 7:
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }while(opcao != 7);
     }
 
     public void pesquisarPorNome(String nome) {
@@ -164,7 +170,6 @@ public class Produto {
 
     public void menuInsercaoProduto() {
         Scanner scanner = new Scanner(System.in);
-        Administrador adm = new Administrador();
 
         System.out.print("Digite o nome do produto: ");
         String nome = scanner.nextLine();
@@ -185,7 +190,6 @@ public class Produto {
         scanner.nextLine();
 
         adicionarProdutoCompleto(nome, categoria, quantidade, custo, valor);
-        adm.menuAdm();
     }
 
     public static void adicionarProdutoCompleto(String nome, String categoria, int quantidade, double custo, double valor) {
@@ -298,49 +302,54 @@ public class Produto {
 
     public void menuRemocaoProduto() {
         Scanner scanner = new Scanner(System.in);
-        Administrador adm = new Administrador();
 
-        System.out.println("Opções de Remoção:");
-        System.out.println("1. Remover por ID");
-        System.out.println("2. Remover por Nome");
-        System.out.println("3. Remover por Categoria");
-        System.out.println("4. Remover por Custo");
-        System.out.println("5. Remover por Valor");
+        int opcao;
+        do {
+            System.out.println("Opções de Remoção:");
+            System.out.println("1. Remover por ID");
+            System.out.println("2. Remover por Nome");
+            System.out.println("3. Remover por Categoria");
+            System.out.println("4. Remover por Custo");
+            System.out.println("5. Remover por Valor");
+            System.out.println("6. Sair");
 
-        System.out.print("Escolha uma opção: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
 
-        switch (opcao) {
-            case 1:
-                System.out.print("Digite o ID do produto: ");
-                int id = scanner.nextInt();
-                removerPorId(id);
-                break;
-            case 2:
-                System.out.print("Digite o Nome do produto: ");
-                String nome = scanner.nextLine();
-                removerPorNome(nome);
-                break;
-            case 3:
-                System.out.print("Digite a Categoria do produto: ");
-                String categoria = scanner.nextLine();
-                removerPorCategoria(categoria);
-                break;
-            case 4:
-                System.out.print("Digite o Custo do produto: ");
-                double custo = scanner.nextDouble();
-                removerPorCusto(custo);
-                break;
-            case 5:
-                System.out.print("Digite o Valor do produto: ");
-                double valor = scanner.nextDouble();
-                removerPorValor(valor);
-                break;
-            default:
-                System.out.println("Opção inválida.");
-        }
-        adm.menuAdm();
+            System.out.print("Escolha uma opção: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    System.out.print("Digite o ID do produto: ");
+                    int id = scanner.nextInt();
+                    removerPorId(id);
+                    break;
+                case 2:
+                    System.out.print("Digite o Nome do produto: ");
+                    String nome = scanner.nextLine();
+                    removerPorNome(nome);
+                    break;
+                case 3:
+                    System.out.print("Digite a Categoria do produto: ");
+                    String categoria = scanner.nextLine();
+                    removerPorCategoria(categoria);
+                    break;
+                case 4:
+                    System.out.print("Digite o Custo do produto: ");
+                    double custo = scanner.nextDouble();
+                    removerPorCusto(custo);
+                    break;
+                case 5:
+                    System.out.print("Digite o Valor do produto: ");
+                    double valor = scanner.nextDouble();
+                    removerPorValor(valor);
+                    break;
+                case 7:
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }while(opcao != 6);
     }
 
     public void atualizarNome(int id, String novoNome) {
@@ -420,55 +429,57 @@ public class Produto {
 
     public void menuAtualizacaoProduto() {
         Scanner scanner = new Scanner(System.in);
-        Administrador adm = new Administrador();
 
         System.out.print("Digite o ID do produto: ");
         int id = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("Escolha o campo que deseja atualizar:");
-        System.out.println("1. Nome");
-        System.out.println("2. Categoria");
-        System.out.println("3. Quantidade");
-        System.out.println("4. Custo");
-        System.out.println("5. Valor");
+        int opcao;
+        do {
+            System.out.println("Escolha o campo que deseja atualizar:");
+            System.out.println("1. Nome");
+            System.out.println("2. Categoria");
+            System.out.println("3. Quantidade");
+            System.out.println("4. Custo");
+            System.out.println("5. Valor");
+            System.out.println("6. Sair");
 
-        System.out.print("Escolha uma opção: ");
-        int opcao = scanner.nextInt();
-        scanner.nextLine();
 
-        switch (opcao) {
-            case 1:
-                System.out.print("Digite o novo nome: ");
-                String nome = scanner.nextLine();
-                atualizarNome(id, nome);
-                break;
-            case 2:
-                System.out.print("Digite a nova categoria: ");
-                String categoria = scanner.nextLine();
-                atualizarCategoria(id, categoria);
-                break;
-            case 3:
-                System.out.print("Digite a nova quantidade: ");
-                int quantidade = scanner.nextInt();
-                atualizarQuantidade(id, quantidade);
-                break;
-            case 4:
-                System.out.print("Digite o novo custo: ");
-                double custo = scanner.nextDouble();
-                atualizarCusto(id, custo);
-                break;
-            case 5:
-                System.out.print("Digite o novo valor: ");
-                double valor = scanner.nextDouble();
-                atualizarValor(id, valor);
-                break;
-            default:
-                System.out.println("Opção inválida.");
-        }
-        adm.menuAdm();
+            System.out.print("Escolha uma opção: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    System.out.print("Digite o novo nome: ");
+                    String nome = scanner.nextLine();
+                    atualizarNome(id, nome);
+                    break;
+                case 2:
+                    System.out.print("Digite a nova categoria: ");
+                    String categoria = scanner.nextLine();
+                    atualizarCategoria(id, categoria);
+                    break;
+                case 3:
+                    System.out.print("Digite a nova quantidade: ");
+                    int quantidade = scanner.nextInt();
+                    atualizarQuantidade(id, quantidade);
+                    break;
+                case 4:
+                    System.out.print("Digite o novo custo: ");
+                    double custo = scanner.nextDouble();
+                    atualizarCusto(id, custo);
+                    break;
+                case 5:
+                    System.out.print("Digite o novo valor: ");
+                    double valor = scanner.nextDouble();
+                    atualizarValor(id, valor);
+                    break;
+                case 6:
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }while(opcao != 6);
     }
-
-
-
 }

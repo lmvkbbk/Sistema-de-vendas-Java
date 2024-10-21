@@ -1,4 +1,4 @@
-import database.Conexao;
+package database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -32,9 +32,9 @@ public class Login {
             if (rs.next()) {
                 this.tipoUsuario = rs.getBoolean("adm");
                 this.autenticacao =  true;
-                System.out.println("Login bem-sucedido.");
+                System.out.println("database.Login bem-sucedido.");
             } else {
-                System.out.println("Login falhou. Verifique suas credenciais.");
+                System.out.println("database.Login falhou. Verifique suas credenciais.");
             }
 
         } catch (SQLException ex) {

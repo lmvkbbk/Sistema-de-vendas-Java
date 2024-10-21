@@ -1,7 +1,6 @@
 package models;
 
-import Menus.Administrador;
-import database.Conexao;
+import database.*;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -75,49 +74,52 @@ public class Usuario {
 
     public void menuPesquisaUsuario(){
         Scanner sc = new Scanner(System.in);
-        Administrador administrador = new Administrador();
+        int opcao;
+        do {
+            System.out.println("Opções de Pesquisa:");
+            System.out.println("1. Nome");
+            System.out.println("2. ID");
+            System.out.println("3. Tipo de Usuario");
+            System.out.println("4. Sair");
 
-        System.out.println("Opções de Pesquisa:");
-        System.out.println("1. Nome");
-        System.out.println("2. ID");
-        System.out.println("3. Tipo de Usuario");
+            System.out.print("Escolha uma opção: ");
+            opcao = sc.nextInt();
+            sc.nextLine();
 
-        System.out.print("Escolha uma opção: ");
-        int opcao = sc.nextInt();
-        sc.nextLine();
+            switch (opcao) {
+                case 1:
+                    System.out.print("Digite o nome: ");
+                    String nome = sc.nextLine();
+                    pesquisarPorNome(nome);
+                    break;
+                case 2:
+                    System.out.print("Digite o Id: ");
+                    int id = sc.nextInt();
+                    pesquisarPorId(id);
+                    break;
+                case 3:
+                    boolean adm;
+                    while (true) {
+                        System.out.print("Digite o tipo de usuario(adm ou fun): ");
+                        String admstring = sc.nextLine();
 
-        switch (opcao){
-            case 1:
-                System.out.print("Digite o nome: ");
-                String nome = sc.nextLine();
-                pesquisarPorNome(nome);
-                break;
-            case 2:
-                System.out.print("Digite o Id: ");
-                int id = sc.nextInt();
-                pesquisarPorId(id);
-                break;
-            case 3:
-                boolean adm;
-                while (true) {
-                    System.out.print("Digite o tipo de usuario(adm ou fun): ");
-                    String admstring = sc.nextLine();
-
-                    if (admstring.equalsIgnoreCase("adm")) {
-                        adm = true;
-                        break;
-                    } else if (admstring.equalsIgnoreCase("fun")) {
-                        adm = false;
-                        break;
-                    } else
-                        System.out.println("Opção inválida");
-                }
-                pesquisarPorAdm(adm);
-                break;
-            default:
-                System.out.println("Opção inválida.");
-        }
-        administrador.menuAdm();
+                        if (admstring.equalsIgnoreCase("adm")) {
+                            adm = true;
+                            break;
+                        } else if (admstring.equalsIgnoreCase("fun")) {
+                            adm = false;
+                            break;
+                        } else
+                            System.out.println("Opção inválida");
+                    }
+                    pesquisarPorAdm(adm);
+                    break;
+                case 4:
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }while(opcao != 4);
     }
 
     public void adicionarUsuarioCompleto(String nome, String senha, boolean adm) {
@@ -138,7 +140,6 @@ public class Usuario {
 
     public void menuInsercaoUsuario(){
         Scanner sc = new Scanner(System.in);
-        Administrador administrador = new Administrador();
 
         System.out.print("Digite o nome do Usuario: ");
         String nome = sc.nextLine();
@@ -146,22 +147,21 @@ public class Usuario {
         System.out.print("Digite a senha: ");
         String senha = sc.nextLine();
 
-        boolean adm;
+        boolean admin;
         while (true) {
             System.out.print("Digite o tipo do Usuario (adm ou fun): ");
             String admstring = sc.nextLine();
 
             if (admstring.equalsIgnoreCase("adm")) {
-                adm = true;
+                admin = true;
                 break;
             } else if (admstring.equalsIgnoreCase("fun")) {
-                adm = false;
+                admin = false;
                 break;
             } else
                 System.out.println("Opção inválida");
         }
-        adicionarUsuarioCompleto(nome, senha, adm);
-        administrador.menuAdm();
+        adicionarUsuarioCompleto(nome, senha, admin);
     }
 
     public void removerPorId(int id) {
@@ -182,13 +182,11 @@ public class Usuario {
 
     public void menuRemoverUser(){
         Scanner sc = new Scanner(System.in);
-        Administrador adm = new Administrador();
 
         System.out.println("Digite o Id do Usuario");
         int id = sc.nextInt();
 
         removerPorId(id);
-        adm.menuAdm();
     }
 
     public void atualizarNomeUsuario(int id, String novoNome) {
@@ -238,53 +236,55 @@ public class Usuario {
 
     public void menuAtualizacaoUsuario(){
         Scanner sc = new Scanner(System.in);
-        Administrador administrador = new Administrador();
 
         System.out.print("Digite o ID do cliente: ");
         int id = sc.nextInt();
         sc.nextLine();
 
-        System.out.println("Escolha o campo que deseja atualizar:");
-        System.out.println("1. Nome");
-        System.out.println("2. Senha");
-        System.out.println("3. Tipo de Usuario");
+        int opcao;
 
-        System.out.print("Escolha uma opção: ");
-        int opcao = sc.nextInt();
-        sc.nextLine();
+        do {
+            System.out.println("Escolha o campo que deseja atualizar:");
+            System.out.println("1. Nome");
+            System.out.println("2. Senha");
+            System.out.println("3. Tipo de Usuario");
 
-        switch (opcao) {
-            case 1:
-                System.out.print("Digite o novo nome: ");
-                String nome = sc.nextLine();
-                atualizarNomeUsuario(id, nome);
-                break;
-            case 2:
-                System.out.print("Digite o nova senha: ");
-                String senha = sc.nextLine();
-                atualizarSenhaUsuario(id, senha);
-                break;
-            case 3:
-                boolean adm;
-                while (true) {
-                    System.out.print("Digite o novo tipo do Usuario (adm ou fun): ");
-                    String admstring = sc.nextLine();
+            System.out.print("Escolha uma opção: ");
+            opcao = sc.nextInt();
+            sc.nextLine();
 
-                    if (admstring.equalsIgnoreCase("adm")) {
-                        adm = true;
-                        break;
-                    } else if (admstring.equalsIgnoreCase("fun")) {
-                        adm = false;
-                        break;
-                    } else
-                        System.out.println("Opção inválida");
-                }
-                atualizarTipoUsuario(id, adm);
-                break;
-            default:
-                System.out.println("Opção inválida.");
-        }
-        administrador.menuAdm();
+            switch (opcao) {
+                case 1:
+                    System.out.print("Digite o novo nome: ");
+                    String nome = sc.nextLine();
+                    atualizarNomeUsuario(id, nome);
+                    break;
+                case 2:
+                    System.out.print("Digite o nova senha: ");
+                    String senha = sc.nextLine();
+                    atualizarSenhaUsuario(id, senha);
+                    break;
+                case 3:
+                    boolean adm;
+                    while (true) {
+                        System.out.print("Digite o novo tipo do Usuario (adm ou fun): ");
+                        String admstring = sc.nextLine();
+
+                        if (admstring.equalsIgnoreCase("adm")) {
+                            adm = true;
+                            break;
+                        } else if (admstring.equalsIgnoreCase("fun")) {
+                            adm = false;
+                            break;
+                        } else
+                            System.out.println("Opção inválida");
+                    }
+                    atualizarTipoUsuario(id, adm);
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }while (opcao > 3);
     }
 
 }
