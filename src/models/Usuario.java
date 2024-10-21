@@ -121,7 +121,7 @@ public class Usuario {
     }
 
     public void adicionarUsuarioCompleto(String nome, String senha, boolean adm) {
-        String sql = "INSERT INTO Usuario (nome, senha, adm) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Usuarios (nome, senha, adm) VALUES (?, ?, ?)";
         try (Connection connection = Conexao.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, nome);

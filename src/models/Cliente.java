@@ -181,7 +181,7 @@ public class Cliente {
     }
 
     public void adicionarClienteCompleto(String nome, String cpf, java.sql.Date dataNascimento, String email, String telefone) {
-        String sql = "INSERT INTO .Cliente (nome, cpf, data_nascimento, email, telefone) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Cliente (nome, cpf, data_nascimento, email, telefone) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = Conexao.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, nome);
